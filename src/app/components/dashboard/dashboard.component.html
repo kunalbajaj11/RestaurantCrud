@@ -1,0 +1,92 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h2>Restuarant Record App</h2>
+        <div class="d-flex">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal" (click)="showBlank = true">
+                Add Restuarant
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="mt-4 p-4 bg-light rounded">
+    <h1>Restuarant Record Management</h1> 
+    <p>Sample Application build with Angular 12</p>
+    <a href="https://github.com/kunalbajaj11?tab=repositories" target="_blank" type="button" class="btn btn-primary btn-lg">Github Repository Link</a>
+  </div>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th scope="col">Restuarant ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Address</th>
+            <th scope="col">Services</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dataSource">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.mobile}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.services}}</td>
+            <td>
+                <button class="btn btn-info" (click)="editRestuarant(item)" data-bs-toggle="modal" data-bs-target="#myModal" (click)="showBlank = false">Edit</button>&nbsp;
+                <button class="btn btn-danger" (click)="deleteRestuarant(item)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form [formGroup]="formGroup">
+                <div class="mb-3 mt-3">
+                    <label for="email">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" formControlName="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" formControlName="email">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="email">Mobile:</label>
+                    <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile" name="mobile" formControlName="mobile">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="email">Address:</label>
+                    <input type="text" class="form-control" id="address" placeholder="Enter Address" name="address" formControlName="address">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="email">Services:</label>
+                    <input type="text" class="form-control" id="services" placeholder="Enter Services" name="services" formControlName="services">
+                </div>
+            </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addRestraunt()" *ngIf="showBlank">Add Details</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateRestraunt()" *ngIf="!showBlank">Update Details</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
